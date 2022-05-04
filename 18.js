@@ -14,7 +14,7 @@
         if(i > 0 && nums[i] == nums[i - 1]) continue;
         for (let j = i + 1; j < len - 2; j++) {
             // j去重
-            if(j > 1 && nums[j] == nums[j - 1]) continue;
+            if(j > i + 1 && nums[j] == nums[j - 1]) continue;
             let l = j + 1, r  = len - 1;
             while(l < r){
                 let sum = nums[i] + nums[j] + nums[l] + nums[r];
@@ -24,7 +24,7 @@
 
                 // cd去重
                 while(l < r && nums[l] === nums[++l]);
-                while(l < r && nums[r] === nums[--l]);
+                while(l < r && nums[r] === nums[--r]);
             }
         }
         
