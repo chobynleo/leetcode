@@ -6,10 +6,10 @@
 
     var arr = s.split("");
 
+    // 删除数组某元素
     removeExtraSpace(arr);
 
-    console.log(arr);
-
+    // 倒转数组
     reverse(arr, 0, arr.length);
 
     var start = 0;
@@ -47,5 +47,3 @@ var reverse = function(arr, start, end) {
         r--;
     }
 }
-
-reverseWords("  hello world  ");
