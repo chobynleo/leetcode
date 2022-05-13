@@ -10,7 +10,7 @@
     removeExtraSpace(arr);
 
     // 倒转数组
-    reverse(arr, 0, arr.length);
+    reverse(arr, 0, arr.length - 1);
 
     var start = 0;
     for (let i = 0; i <= arr.length; i++) {

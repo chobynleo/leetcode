@@ -18,7 +18,6 @@
         }
         return next;
     }
-    console.log(getNext(s));
 
     let next = getNext(s);
 
