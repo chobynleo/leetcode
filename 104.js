@@ -30,7 +30,7 @@ var maxDepth = function(root) {
  * @param {TreeNode} root
  * @return {number}
  */
- var maxDepth = function(root) {
+var maxDepth = function(root) {
     // 全局的最大深度结果
     var maxDepthResult = 0;
     // 先创建一个递归函数
@@ -39,7 +39,7 @@ var maxDepth = function(root) {
         // 这条表达式只要放在getDepth函数的return语句前任何一个地方都成立
         maxDepthResult = depth > maxDepthResult? depth : maxDepthResult; // 这个不是中哈，这个表达式放在左右后面一样成立
         
-        // 中 知道depth，等同于先处理 node.val
+        // 中 知道depth，等同于先处理 node.val,这里只是对每一个节点进行标记，标记深度而已
         var nextDepth = depth + 1;
 
         // 左
@@ -51,7 +51,9 @@ var maxDepth = function(root) {
     }
 
     if(!root) return maxDepthResult;
+
     getDepth(root, 1);
+
     return maxDepthResult;
 };
 
