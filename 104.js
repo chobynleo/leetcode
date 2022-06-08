@@ -35,12 +35,17 @@ var maxDepth = function(root) {
     var maxDepthResult = 0;
     // 先创建一个递归函数
     var getDepth = function(node, depth) {
-        // 中
-        maxDepthResult = depth > maxDepthResult? depth : maxDepthResult;
+        
+        // 这条表达式只要放在getDepth函数的return语句前任何一个地方都成立
+        maxDepthResult = depth > maxDepthResult? depth : maxDepthResult; // 这个不是中哈，这个表达式放在左右后面一样成立
+        
+        // 中 知道depth，等同于先处理 node.val
+        var nextDepth = depth + 1;
+
         // 左
-        if(node.left) getDepth(node.left, depth + 1);
+        if(node.left) getDepth(node.left, nextDepth);
         // 右
-        if(node.right) getDepth(node.right, depth + 1);
+        if(node.right) getDepth(node.right, nextDepth);
 
         return ;
     }
