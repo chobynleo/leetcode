@@ -123,7 +123,7 @@ var maxDepth = function(root) {
     
     if(!root) return maxDepthResult;
 
-    var stack = [root], leftDepth = [1], rightDepth = [1];
+    var stack = [root];
 
     var getDepth = function(root) {
         if(!root) return 1;
