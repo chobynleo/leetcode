@@ -46,8 +46,6 @@ var maxDepth = function(root) {
         if(node.left) getDepth(node.left, nextDepth);
         // 右
         if(node.right) getDepth(node.right, nextDepth);
-
-        return ;
     }
 
     if(!root) return maxDepthResult;
@@ -83,4 +81,77 @@ var maxDepth = function(root) {
     }
 
     return depth;
+};
+
+// 迭代法 - 前序遍历
+var maxDepth = function(root) {
+    // 全局的最大深度结果
+    var maxDepthResult = 0;
+    
+    if(!root) return maxDepthResult;
+
+    var stack = [root], depth = [1];
+
+    while(stack.length) {
+        var node = stack.pop();
+        var curDepth = depth.pop();
+        if(node) {
+            if(node.right) {
+                stack.push(node.right);
+                depth.push(curDepth + 1);
+            }
+            if(node.left) {
+                stack.push(node.left);
+                depth.push(curDepth + 1);
+            }
+            stack.push(node);
+            stack.push(null);
+            depth.push(curDepth);
+        } else {
+            stack.pop();
+            if(maxDepthResult < curDepth) maxDepthResult = curDepth;
+        }
+    }
+
+    return maxDepthResult;
+};
+
+// 迭代法 - 后序遍历
+var maxDepth = function(root) {
+    // 全局的最大深度结果
+    var maxDepthResult = 0;
+    
+    if(!root) return maxDepthResult;
+
+    var stack = [root], leftDepth = [1], rightDepth = [1];
+
+    var getDepth = function(root) {
+        if(!root) return 1;
+
+        return root.depth;
+    }
+
+    while(stack.length) {
+        var node = stack.pop();
+        if(node) {
+            stack.push(node);
+            stack.push(null);
+            if(node.right) {
+                stack.push(node.right);
+            }
+            if(node.left) {
+                stack.push(node.left);
+            }
+        } else {
+            var node = stack.pop();
+            var curLeftDepth = getDepth(node.left);
+            var curRightDepth = getDepth(node.right);
+
+            var curDepth = Math.max(curLeftDepth, curRightDepth);
+            node.depth = 1 + curDepth;
+            if(maxDepthResult < curDepth) maxDepthResult = curDepth;
+        }
+    }
+
+    return maxDepthResult;
 };
