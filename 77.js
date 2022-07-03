@@ -37,6 +37,7 @@ var combine = function(n, k) {
 
         // 即当前的序号i加上补位数组的和要小于等于n
         // i + k - (len + 1) <= n
+        // 1 + n - i + len >= k
         for (let i = m; i <= n - k + (path.length + 1); i++) {
             path.push(i);
             backTracking(n, k, i + 1);
