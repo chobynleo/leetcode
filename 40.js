@@ -3,21 +3,21 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function(candidates, target) {
+var combinationSum2 = function(candidates, target) {
     var res = [], cur = [];
-    candidates.sort((a, b) => a - b); // 排序
+
     var backTracking = function(start) {
-        var sum = cur.length == 0? 0 : cur.reduce((a, b) => a + b);
-        if(sum == target) {
-            res.push([...cur]);
+        if(start >= candidates.length) return;
+
+        var sum = res.length == 0? 0 : cur.reduce((a, b) => a + b);
+        if(sum >= target) {
+            if(sum == target) res.push([...cur]);
             return;
         }
 
         for (let i = start; i < candidates.length; i++) {
-            // 剪枝优化
-            if(sum + candidates[i] > target) break;
             cur.push(candidates[i]);
-            backTracking(i);
+            backTracking(i + 1);
             cur.pop();
         }
     }
@@ -26,3 +26,5 @@ var combinationSum = function(candidates, target) {
 
     return res;
 };
+
+console.log(combinationSum2([2,5,2,1,2], 5));
