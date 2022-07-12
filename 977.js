@@ -17,5 +17,18 @@ function sortSqrArr(nums){
    return newArr;
 }
 
-var nums = [-4,-1,1,2,10]
-console.log(sortSqrArr(nums))
+var sortedSquares = function(nums) {
+    var left = 0, right = nums.length - 1, result = [];
+
+    for (let i = 0; i < nums.length; i++) {
+        if(nums[left] * nums[left] > nums[right] * nums[right]) {
+            result.unshift(nums[left] * nums[left]);
+            left++;
+        } else {
+            result.unshift(nums[right] * nums[right]);
+            right--;
+        }
+    }
+
+    return result;
+};
