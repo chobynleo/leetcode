@@ -1,36 +1,42 @@
 // 螺旋矩阵
-function routMatrix(n){
-
-    var loop = Math.floor(n/2)
-    var mid = Math.floor(n/2)
-    var startX = 0, startY = 0, offset = 1, row = 0, col = 0
+var generateMatrix = function(n) {
+    var loop = Math.floor(n / 2)
+    var startRow = 0, startCol = 0, row = 0, col = 0, count = 1, offset = 1
     var res = new Array(n).fill(0).map(() => new Array(n).fill(0))
-    var count = 1
-    while(loop--){
-        row = startY
-        col = startX
-        for(; col < startX + n - offset; col++){
-            res[row][col] = count++
-        }
-        for(; row < startY + n - offset; row++){
-            res[row][col] = count++
-        }
-        for(; col > startX; col--){
-            res[row][col] = count++
-        }
-        for(; row > startY; row--){
-            res[row][col] = count++
+    while(loop--) {
+        row = startRow
+        col = startCol
+
+        for(;col < startCol + n - offset; col++) {
+            res[row][col] = count
+            count++
         }
 
-        startX++
-        startY++
+        for(;row < startRow + n - offset; row++) {
+            res[row][col] = count
+            count++
+        }
 
-        offset+=2
+        for(;col > startCol; col--) {
+            res[row][col] = count
+            count++
+        }
+
+        for(;row > startRow; row--) {
+            res[row][col] = count
+            count++
+        }
+
+        offset += 2
+
+        startRow++
+        startCol++
     }
-    
-    if(n %2 ==1){
+
+    if( n % 2 == 1) {
+        var mid = Math.floor(n / 2)
         res[mid][mid] = count
     }
+
     return res
-}
-console.log(routMatrix(3))
+};
