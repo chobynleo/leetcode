@@ -2,6 +2,32 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+ var permute = function(nums) {
+    var res = [], cur = []
+    var isUsed = new Array(nums.length).fill(0)
+
+    var backTracking = function() {
+
+        if(cur.length == nums.length) {
+            res.push([...cur])
+            return;
+        }
+
+        for(var i = 0; i < nums.length; i++) {
+            if(isUsed[i]) continue;
+            isUsed[i] = 1
+            cur.push(nums[i])
+            backTracking()
+            isUsed[i] = 0
+            cur.pop()
+        }
+    }
+
+    backTracking()
+
+    return res
+};
+
 var permute = function(nums) {
     var res = [], path = [];
 
