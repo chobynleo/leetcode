@@ -18,12 +18,12 @@ var climbStairs = function(n) {
 var climbStairs = function(n) {
     if(n < 3) return n;
 
-    var dp = [0, 1, 2];
+    var dp = [1, 2];
     for (let i = 3; i <= n; i++) {
-        var sum = dp[1] + dp[2];
-        dp[1] = dp[2];
-        dp[2] = sum;
+        var sum = dp[0] + dp[1];
+        dp[0] = dp[1];
+        dp[1] = sum;
     }
 
-    return dp[2];
+    return dp[1];
 };
