@@ -36,24 +36,24 @@ var arr = [2, 7, 8, 19, 10, 6, 11, 33, 25, 0, 4]
 console.log(quickSort(arr, 0, arr.length - 1))
 
 var arr2 = [2, 7, 8, 19, 10, 6, 11, 33, 25, 0, 4]
-function quickSort2(arr, left, right) {
+function quickSort2(arr2, left, right) {
     if(left < right) {
         var i = left
         var j = right
-        var temp = arr[left]
+        var temp = arr2[left]
 
         while(i < j) {
-            while(arr[j] > temp && i < j) j--
-            arr[i] = arr[j]
+            while(arr2[j] > temp && i < j) j--
+            arr2[i] = arr2[j]
 
-            while(arr[i] < temp && i < j) i++
-            arr[j] = arr[i]
+            while(arr2[i] < temp && i < j) i++
+            arr2[j] = arr2[i]
         }
 
-        arr[i] = temp
+        arr2[i] = temp
 
-        quickSort(arr, left, i - 1)
-        quickSort(arr, i + 1, right)
+        quickSort2(arr2, left, i - 1)
+        quickSort2(arr2, i + 1, right)
     }
 }
 
