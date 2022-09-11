@@ -10,21 +10,17 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
+    if(!head) return head
+
     var virtualHead = new ListNode(Infinity, head)
-    
-    var preVal = virtualHead.val
-    var pre = virtualHead
     var cur = head
 
-    while (cur) {
-        if (cur.val == preVal) {
-            pre.next = cur.next
-        } else {
-            pre = cur
+    while(cur.next) {
+        if(cur.val == cur.next.val) {
+            cur.next = cur.next.next
+        } else{
+            cur = cur.next
         }
-
-        preVal = cur.val
-        cur = cur.next
     }
 
     return virtualHead.next
