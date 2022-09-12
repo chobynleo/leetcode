@@ -1,22 +1,28 @@
-class ListNode {
-    val;
-    next = null;
-    constructor(value, nextNode) {
-      this.val = value;
-      this.next = nextNode;
-    }
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+ var removeElements = function(head, val) {
+  if(!head) return head
+
+  var virtualHead = new ListNode(0, head)
+  var cur = virtualHead
+
+  while(cur.next) {
+      if(cur.next.val == val) {
+          cur.next = cur.next.next
+      } else {
+          cur = cur.next
+      }
   }
 
-var removeElements = function(head, val){
-    var virtualHead = new ListNode(0, head)
-    var temp = virtualHead
-
-    while(temp.next){
-        if(temp.next.val === val){
-            temp.next = temp.next.next
-            continue
-        }
-        temp = temp.next
-    }
-    return virtualHead.next
-}
+  return virtualHead.next
+};
