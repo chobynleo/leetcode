@@ -1,21 +1,26 @@
 // 有序数组的平方
-function sortSqrArr(nums){
-   var len = nums.length
-   var newArr = new Array(len).fill(0)
-   var i = 0, j = len -1, k = len -1;
-   while(i<j){
-    var left = nums[i] * nums[i]
-    var right = nums[j] * nums[j]
-    if(left < right){
-        newArr[k--] = right
-        j--
-    }else{
-        newArr[k--] = left
-        i++
+var sortedSquares = function(nums) {
+    var len = nums.length;
+    var newArr = new Array(len).fill(0);
+    var i = 0, j = len - 1, k = len - 1;
+
+    while (i <= j) {
+        var left = nums[i] * nums[i];
+        var right = nums[j] * nums[j];
+
+        if (left < right) {
+            newArr[k] = right;
+            k--;
+            j--;
+        } else {
+            newArr[k] = left;
+            k--;
+            i++;
+        }
     }
-   }
-   return newArr;
-}
+
+    return newArr
+};
 
 var sortedSquares = function(nums) {
     var left = 0, right = nums.length - 1, result = [];
