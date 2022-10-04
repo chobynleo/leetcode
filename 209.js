@@ -1,18 +1,20 @@
 // 209.长度最小的子数组
 var minSubArrayLen = function(target, nums) {
-    var len = nums.length
-    var res = len + 1
-    var l = r = sum = 0
-    while(r < len) {
-        sum += nums[r]
+    var min = Infinity
+    var sum = 0
+    // var res = []
+    var l = 0
+    for(var i = 0; i < nums.length; i++) {
+        sum += nums[i]
         while(sum >= target) {
-            res = r - l + 1 < res? r - l + 1 : res
+            // res.push(nums)
+            if(i - l + 1 < min) min = i - l + 1
             sum -= nums[l]
             l++
         }
-        r++
     }
-    return res <= len? res : 0
+
+    return min == Infinity? 0 : min
 };
 
 // 来源：某笔试
