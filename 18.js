@@ -6,7 +6,7 @@
  var fourSum = function(nums, target) {
     const len = nums.length;
     if(len < 4) return [];
-    // 排序的目的是减少搜索的范围，提高效率,O(n^4) -> O(n^3)
+    // 排序的目的是减少搜索的范围，提高效率;此外双指针将时间复杂度O(n^4) -> O(n^3)
     nums.sort(function(a,b){return a-b});
     let res = [];
     for (let i = 0; i < len - 3; i++) {
