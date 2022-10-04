@@ -27,20 +27,18 @@ var minSubArray = function(target, nums) {
     var cur = []
     var res = []
     var l = 0
-    var r = 0
     for(var i = 0; i < nums.length; i++) {
         sum += nums[i]
         cur.push(nums[i])
         while(sum >= target) {
-            if(r - l + 1 < min) {
-                min = r - l + 1
+            if(i - l + 1 < min) {
+                min = i - l + 1
                 res = [...cur]
             }
             sum -= nums[l]
             cur.shift()
             l++
         }
-        r++
     }
 
     return min == Infinity? [] : res
