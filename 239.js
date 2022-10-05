@@ -3,44 +3,49 @@
  * @param {number} k
  * @return {number[]}
  */
-var maxSlidingWindow = function(nums, k) {
-    var queue = {
-        stack: [],
+ var maxSlidingWindow = function(nums, k) {
+    var stack = [];
+    var slidingWindwMethod = {
         enter: (value) => {
-            if(!queue.stack.length) {
-                queue.stack.push(value);
-                return;
+            if(stack.length) {
+                // 处理stack不为空的情况
+                // value如果是最小就push进去作栈顶，value如果比stack栈顶值大就替换掉这个栈顶值
+                var last = stack[stack.length - 1];
+                while (last != undefined && last < value) {
+                    stack.pop();
+                    last = stack[stack.length - 1];
+                }
             }
-            var last = queue.stack[queue.stack.length - 1];
-            while(last !== undefined && last < value) {
-                queue.stack.pop();
-                last = queue.stack[queue.stack.length - 1];
-            }
-            queue.stack.push(value);
+            // stack为不为空最后的逻辑都是要push进去
+            stack.push(value);
         },
         quit: (value) => {
-            if(value == queue.getMax()) {
-                queue.stack.shift();
+            if (value == slidingWindwMethod.getMax()) {
+                stack.shift();
             }
         },
         getMax: () => {
-            return queue.stack[0]
+            if (stack.length){
+                return stack[0]
+            }
         }
     }
 
-    var i = j = 0, res = [];
+    var l = r = 0, res = [];
 
-    while(j < k) {
-        queue.enter(nums[j++])
+    while (r < k) {
+        slidingWindwMethod.enter(nums[r]);
+        r++;
     }
 
-    res.push(queue.getMax());
+    res.push(slidingWindwMethod.getMax());
 
-    while(j < nums.length) {
-        queue.enter(nums[j++]);
-        queue.quit(nums[i++]);
-        res.push(queue.getMax());
-        console.log('res', res)
+    while (r < nums.length) {
+        slidingWindwMethod.enter(nums[r]);
+        slidingWindwMethod.quit(nums[l]);
+        res.push(slidingWindwMethod.getMax());
+        l++;
+        r++;
     }
 
     return res;
