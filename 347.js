@@ -3,7 +3,24 @@
  * @param {number} k
  * @return {number[]}
  */
+// 主观上来说，肯定是小顶堆 or 桶排序的方法要好一点的
+// 客观上来说，面试时间紧张且可能出现玄幻调试，为了AC稳妥一点可以考虑sort排序（会超时间复杂度）
  var topKFrequent = function(nums, k) {
+    // 哈希表+sort
+    let map = new Map();
+
+    for(var x of nums) {
+        map.set(x, map.has(x) ? map.get(x) + 1 : 1); // 初始化出现次数为1，之后累加
+    }
+
+    if(k === map.size) return [...map.keys()]; // k如果等于map.size，直接返回全部key
+
+    let arr = Array.from(map).sort((a, b) => {return b[1] - a[1]}); // 从大到小排序
+    
+    return arr.slice(0, k).map(a => {return a[0]}) // 截取前k个key
+};
+
+ var topKFrequent2 = function(nums, k) {
 
     // 1. 先得到频率数组
     var map = new Map();
@@ -87,4 +104,4 @@ PriorityQueue.prototype.compare = function(index1, index2) {
     return this.compareFn(this.queue[index1], this.queue[index2])
 }
 
-console.log(topKFrequent([1,1,1,2,2,3], k = 2))
+
